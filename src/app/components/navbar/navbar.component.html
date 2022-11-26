@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!--  <span>HOME</span> -->
+       <span><a class="home" href="/">HOME</a></span>
+       <a *ngIf="signIn.isLoggedIn()" mat-button routerLink="/retrieve/user">Users</a>
+       <span class="spacer"></span>
+       <a *ngIf="!signIn.isLoggedIn()" mat-button routerLink="/register/user">Register</a>
+       <a *ngIf="!signIn.isLoggedIn()" mat-button routerLink="/user/login">Login</a>
+       <a *ngIf="signIn.isLoggedIn()" mat-button (click)="logOut()"><mat-icon>account_circle</mat-icon></a>
+    </mat-toolbar-row>
+ </mat-toolbar>

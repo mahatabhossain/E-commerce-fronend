@@ -1,0 +1,78 @@
+<div class="flex min-h-full items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-4">
+    <div>
+      <!-- <img class="mx-auto h-12 w-auto" src="#" alt="Your Company"> -->
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Creater your account</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+      </p>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Already have an accout?
+        <a href="#" routerLink="/user/login" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
+      </p>
+    </div>
+    <form class="mt-8 space-y-6" #userForm="ngForm" (ngSubmit)="onUserSignUp(userForm.value)" enctype="multipart/form-data">
+      <div class="-space-y-px rounded-md shadow-sm ">
+        <div>
+          <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">First
+            Name</label>
+          <input type="text" name="firstName" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="First Name">
+        </div>
+        <div>
+          <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Last Name
+          </label>
+          <input type="text" name="lastName" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Last Name">
+        </div>
+        <div>
+          <label for="email-address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Email
+            address</label>
+          <input type="email" name="email" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Email address">
+        </div>
+        <div>
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Password</label>
+          <input [type]="hidePassword ? 'password' : 'text'" name="password" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Password">
+          <div (click)="hidePassword = !hidePassword" class="eye_icon">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </div>
+        </div>
+        <div>
+          <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Sign up
+            as</label>
+          <select id="countries"
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <option selected="">Choose one</option>
+            <option value="">User</option>
+            <option value="">Admin</option>
+            <option value="">Vendor</option>
+          </select>
+        </div>
+        <div>
+          <label for="Upload image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Upload image</label>
+          <input type="file" name="file" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Upload a snap">
+        </div>
+        <div class="flex items-center">
+          <input name="terms-condition" type="checkbox" (click)="openDialog()"
+            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+          <label for="terms-condition" class="ml-2 block text-sm text-gray-900">Terms & condition</label>
+        </div>
+      </div>
+      <div>
+        <button type="submit"
+          class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          {{signupText ? 'Signing up...' : 'Sign up'}}
+          <mat-progress-spinner *ngIf="signupText" mode="indeterminate" color="warn" diameter="20" strokeWidth="40">
+          </mat-progress-spinner>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

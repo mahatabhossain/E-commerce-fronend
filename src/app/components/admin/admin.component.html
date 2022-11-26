@@ -1,0 +1,18 @@
+<h2>Admin component</h2>
+<h3>Child data: <span [style]="childDataColor" [style.font-size]="'2em'">{{childInfo}}</span></h3>
+<h3 #changeText>Transfer data to child</h3>
+<form #formData = "ngForm">
+    <label>Name</label>
+    <input type="text" name = "name" ngModel>
+    <label>Company</label>
+    <input type="text" name="company" ngModel>
+    <button type="button" (click)="transferData(formData.value)" mat-button #parentBtn>Send to child</button>
+    <span>{{response}}</span>
+</form><br><br>
+<div>
+    <app-accountcontrol
+    [adminName] = "inptuName" 
+    [companyName] = "companyName"
+    (childData)="dataFromChild($event)"
+    ></app-accountcontrol>
+</div>

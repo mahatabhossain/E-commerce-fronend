@@ -1,0 +1,15 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+  .home{
+    text-decoration: none;
+    color: white;
+  }
+  a{
+    font-size:1.5rem ;
+  }
+  mat-icon{
+    font-size: 3rem;
+    height: auto;
+  }

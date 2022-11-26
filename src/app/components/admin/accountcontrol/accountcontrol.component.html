@@ -1,0 +1,29 @@
+<section>
+    <h2>Account control component</h2>
+    <div>
+        <h3>Data comming from parent(admin) component</h3>
+        <p>Admin name: {{adminName}}</p>
+        <p>Company name: {{companyName}}</p>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr [style]="tablestyle">
+                    <th style="padding-right: 2em;">Name</th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of listOfData">
+                <tr>
+                    <td style="padding-right: 2em;">{{data.name}}</td>
+                    <td>{{data.company}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Send data to parent(admin)</h3>
+        <input type="text" #childReference>
+        <button type="button" (click)="sendDataToParent(childReference.value)" mat-button> Send to parent</button>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+.controls_icon{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.controls_icon mat-icon{
+    cursor: pointer;
+    height: 2rem;
+    
+}
