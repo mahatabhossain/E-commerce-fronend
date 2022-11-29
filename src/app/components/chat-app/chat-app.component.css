@@ -1,0 +1,38 @@
+h1{
+    text-align: center;
+    font-size: 2rem;
+}
+li{
+    list-style-type: none;
+}
+.inp_box{
+    border: 2px solid black;
+    border-radius: 4px;
+    height: 2rem;
+    margin-right: 3px;
+}
+.btn{
+    background-color: blue;
+    height: 2rem;
+    width: 3rem;
+    border-radius: 5px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.chat_container{
+    display: flex;
+    height: 20rem;
+    width: 20rem;
+    background-color: rgb(221, 212, 212);
+    border: 3px dotted blue;
+    margin-bottom: 5px;
+    flex-direction: column;
+    overflow:auto;
+}
+.input_button_container{
+
+}

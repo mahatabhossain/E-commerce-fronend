@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule} from '@angular/material/icon';
 import { UpdateuserComponent } from './components/updateuser/updateuser.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
@@ -31,6 +31,8 @@ import { VendorComponent } from './components/vendor/vendor.component';
 import { AccountcontrolComponent } from './components/admin/accountcontrol/accountcontrol.component';
 import { ProductcontrolComponent } from './components/admin/productcontrol/productcontrol.component';
 import { AddproductComponent } from './components/vendor/addproduct/addproduct.component';
+import { ChatAppComponent } from './components/chat-app/chat-app.component';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { AddproductComponent } from './components/vendor/addproduct/addproduct.c
     AccountcontrolComponent,
     ProductcontrolComponent,
     AddproductComponent,
+    ChatAppComponent,
     // DialogComponent,
 
   ],
@@ -64,6 +67,7 @@ import { AddproductComponent } from './components/vendor/addproduct/addproduct.c
     MatToolbarModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,

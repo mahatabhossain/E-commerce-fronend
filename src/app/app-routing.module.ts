@@ -6,17 +6,16 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UpdateuserComponent } from './components/updateuser/updateuser.component';
-// import { AuthGuard } from './guards/auth.guard';
 import { UserlandingComponent } from './components/userlanding/userlanding.component';
-// import { VendordashboardComponent } from './components/vendor/vendordashboard/vendordashboard.component';
 import { AccountcontrolComponent } from './components/admin/accountcontrol/accountcontrol.component';
 import { AddproductComponent } from './components/vendor/addproduct/addproduct.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ChatAppComponent } from './components/chat-app/chat-app.component';
 
 
 const routes: Routes = [
 
-  //**************// ADMIN ROUTES //**************** */ */
+  //**************// ADMIN ROUTES //*****************/
   {
     path: 'admin',
     component: AdminComponent,
@@ -26,12 +25,12 @@ const routes: Routes = [
     component: AccountcontrolComponent
   },
 
-  //*************// VENDOR LANDING //************ */ */
+  //*************// VENDOR LANDING //*************/
   {
     path: 'vendor/add-product',
     component: AddproductComponent
   },
-  //*************// USER ROUTES //***************** */ */
+  //*************// USER ROUTES //******************/
   { path: '', 
     redirectTo: 'landing/user', 
     pathMatch: 'full',
@@ -59,12 +58,14 @@ const routes: Routes = [
     path: 'forgot/password',
     component: ForgotpassComponent,
   },
+  {
+    path: 'chat',
+    component: ChatAppComponent,
+  },
   {  
     path: '**', 
     component: NotfoundComponent 
   },
-
-
 ];
 
 @NgModule({

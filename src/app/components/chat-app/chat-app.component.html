@@ -1,0 +1,18 @@
+
+<!-- <div class="chat">
+    <form [formGroup]="tokenForm" (submit)="submitToken()">
+      <input type="text" placeholder="Enter token" formControlName="token" />
+      <button type="submit">Submit</button>
+    </form>
+  </div> -->
+
+  <section class="container">
+    <h1>Chat Box</h1>
+    <div class="chat_container">
+        <p  *ngFor="let msg of messageList">{{msg}}</p>
+    </div>
+    <div class="input_button_container">
+      <input class="inp_box" [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" placeholder="Type your message">
+      <button class="btn" (click)="sendMessage()" >Send</button>
+    </div>
+  </section>
