@@ -12,7 +12,7 @@ export class ForgotPassService {
   checkEmail(email: any){
     const header = new HttpHeaders({'content-type': 'application/json'});
     const body = JSON.stringify(email);
-    return this.http.post(`${baseURL}check/email`,body, {headers: header});
+    return this.http.post(`${baseURL}/check/email`,body, {headers: header});
   };
 
   // forgotPassword(id: string){

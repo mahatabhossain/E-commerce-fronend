@@ -10,6 +10,6 @@ export class GetUserService {
   constructor(private http: HttpClient) { }
 
   getUserdata(){
-    return this.http.get(`${baseURL}get/user`);
+    return this.http.get(`${baseURL}/get/user`);
   }
 }

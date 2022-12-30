@@ -9,34 +9,83 @@ import { UpdateuserComponent } from './components/updateuser/updateuser.componen
 import { UserlandingComponent } from './components/userlanding/userlanding.component';
 import { AccountcontrolComponent } from './components/admin/accountcontrol/accountcontrol.component';
 import { AddproductComponent } from './components/vendor/addproduct/addproduct.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { ChatAppComponent } from './components/chat-app/chat-app.component';
+import { ProductComponent } from './components/product/product.component';
+
+// ADMIN COMPONENTS
+import { AdminComponent as adminDashboard} from './components/admin/admin.component';
+import { SigninComponent as adminLogin} from '../app/components/admin/signin/signin.component';
+import { SignupComponent } from '../app/components/admin/signup/signup.component';
+import { ThreeComponent } from './components/three/three.component';
+import { VendorsigninComponent } from './components/vendor/vendorsignin/vendorsignin.component';
+import { VendorsignupComponent } from './components/vendor/vendorsignup/vendorsignup.component';
+import { VendorComponent } from './components/vendor/vendor.component';
+import { VendordataComponent } from './components/vendor/vendordata/vendordata.component';
 
 
 const routes: Routes = [
 
   //**************// ADMIN ROUTES //*****************/
   {
-    path: 'admin',
-    component: AdminComponent,
+    path: 'admin/dashboard',
+    component: adminDashboard,
+    children: [
+      {
+        path: 'test',
+        component: AddproductComponent,
+      }
+    ]
+  },
+  {
+    path: 'admin/signup',
+    component: SignupComponent,
+  },
+  {
+    path: 'admin/login',
+    component: adminLogin,
   },
   {
     path: 'admin/account-control',
     component: AccountcontrolComponent
   },
+  { 
+    path: 'retrieve/user',
+    // canActivate: [AuthGuard],
+    component: GetUserComponent
+  },
 
-  //*************// VENDOR LANDING //*************/
+  //*************// VENDOR ROUTERS //*************/
+  {
+    path: 'vendor/dashboard',
+    component: VendorComponent,
+  },
   {
     path: 'vendor/add-product',
-    component: AddproductComponent
+    component: AddproductComponent,
+    children:[],
   },
-  //*************// USER ROUTES //******************/
-  { path: '', 
-    redirectTo: 'landing/user', 
-    pathMatch: 'full',
+
+  {
+    path: 'vendor/signin',
+    component: VendorsigninComponent,
   },
   {
-    path: 'landing/user',
+    path: 'vendor/signup',
+    component: VendorsignupComponent,
+  },
+  {
+    path: 'vendor/data',
+    component: VendordataComponent,
+  },
+
+  //*************// USER ROUTES //******************/
+  { path: '', 
+    redirectTo: 'user/landing', 
+    pathMatch: 'full',
+    // children: [],
+  },
+  {
+    path: 'user/landing',
     component: UserlandingComponent,
   },
   { path: 'register/user', 
@@ -44,11 +93,6 @@ const routes: Routes = [
   },
   { path: 'user/login',
     component:SignInComponent
-  },
-  { 
-    path: 'retrieve/user',
-    // canActivate: [AuthGuard],
-    component: GetUserComponent
   },
   { 
     path: 'update/user', 
@@ -62,14 +106,28 @@ const routes: Routes = [
     path: 'chat',
     component: ChatAppComponent,
   },
+  {
+    path: 'products',
+    component: ProductComponent
+  },
+
+  //****************// EXPERIMENTS //*********** */ */
+  {
+    path: 'three',
+    component: ThreeComponent,
+  },
+
   {  
     path: '**', 
     component: NotfoundComponent 
   },
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

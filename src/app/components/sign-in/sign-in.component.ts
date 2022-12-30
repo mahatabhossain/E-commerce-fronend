@@ -38,17 +38,17 @@ export class SignInComponent implements OnInit {
         //   "password":result.user.password,
         // };
         // localStorage.setItem('dataset', JSON.stringify(results));
+        // console.log("result", result.user.email,result.user.password )
 
-        console.log("result", result.user.email,result.user.password )
+        this.logginText = false;
         localStorage.setItem("token", result.token);
         localStorage.setItem("email", result.user.email);
         localStorage.setItem("password", result.user.password);
 
-        this.router.navigate(['/retrieve/user'])
-        this.snackBar.open('Sign in successful', '', {
-          duration: 1000
+        this.snackBar.open(result.message, 'Close', {
+          duration: 1000,
         });
-        console.log('login successfull');
+        this.router.navigate(['products'])
       }
     }, (error) => {
       console.log(error.message);

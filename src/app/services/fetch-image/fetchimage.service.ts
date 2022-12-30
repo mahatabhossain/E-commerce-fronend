@@ -10,6 +10,6 @@ export class FetchimageService {
   constructor(private http: HttpClient) { }
 
   fetchImage(){
-    return this.http.get(`${baseURL}get/image`);
+    return this.http.get(`${baseURL}/get/image`);
   }
 }

@@ -2,13 +2,15 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { MatButton } from '@angular/material/button';
 import { AccountcontrolComponent } from './accountcontrol/accountcontrol.component';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit, AfterViewInit {
-[x: string]: any;
+ 
+  [x: string]: any;
 
   //@ViewChild decorator access child component to pass data from parent 
   @ViewChild(AccountcontrolComponent) adminData!: AccountcontrolComponent;
@@ -23,21 +25,25 @@ export class AdminComponent implements OnInit, AfterViewInit {
   companyName!: '';
   response: any;
   adminResp: any;
-  childInfo!:string;
+  childInfo!: string;
 
-  constructor() { }
+  constructor(
+ 
+    ) { }
 
   ngOnInit(): void {
   }
-  
+
   ngAfterViewInit(): void {
     this.parentButton.color = 'primary';
     console.log(this.adminTitle);
     this.adminTitle.nativeElement.innerHTML = 'Admin working well';
   }
+  
 
 
-  transferData(data:any){
+
+  transferData(data: any) {
     console.log(data)
     this.inptuName = data.name;
     this.companyName = data.company;
@@ -45,10 +51,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   }
 
-  updateTitle(title: any){
+  updateTitle(title: any) {
     this.title = title;
   }
-  dataFromChild($event:any){
+  dataFromChild($event: any) {
     this.childInfo = $event;
   }
 

@@ -15,6 +15,7 @@ export class SignUpComponent implements OnInit {
 
   hidePassword = true
   signupText = false
+  files: any;
 
   constructor(
     private http: HttpClient, 
@@ -40,6 +41,12 @@ export class SignUpComponent implements OnInit {
       console.log('Sign up successfull');
     });
   }
+
+  // selectFile(event:any){
+  //   if(event.files?.length > 0){
+  //     this.files = event.files
+  //   }
+  // }
 
   openDialog(){
     this.dialog.open(SignupdialogComponent)

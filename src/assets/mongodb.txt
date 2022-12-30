@@ -1,0 +1,193 @@
+						MONGODB TUTORIAL
+					----------------------------------
+					
+mongo shell  => To open mongo shell in terminal: mongosh
+
+show dbs => shows all dbs
+
+use dbName => switch to dbName database
+
+Creation
+db.collectionName.insertOne({field1:val1,...}) => Insert a single doc in Collection
+db.collectionName.insertMany([{field1:val1,...},{field2:val2,...}]) => Insert many docs in Collection
+
+Reading
+db.collecName.find(filter, options) => Find all docs     .pretty() => Format data
+db.collecName.findOne(filter, options) => Find one doc  
+
+Updating
+db.collecName.update(filter,data,options) => Replace all fields with data 
+db.collecName.updateOne(filter,data,options)
+db.collecName.updateMany(filter,data,options)
+db.collecName.replaceOne(filter,data,options)
+
+Deleting
+db.collecName.deleteOne(filter, options) => Delete one doc  
+db.collecName.deleteMany(filter, options) => Delete many doc 
+db.collecName.drop()  => Delete Collection
+
+Upating example
+db.someCollection.updateOne({distance:1000},{$set:{field:"value"}})
+  
+Find 
+Returns cursor object
+it can be used to scroll through array
+db.coll.find().toArray() => Returns all docs without cursor object 
+db.coll.find().forEach((doc)=>doSomething) => Iterates through all docs  
+
+Projection
+db.coll.find({},{field:1}) =>Includes only fields
+
+Arrays
+{field:["val1","val2"]}
+
+Accessing nested data
+db.coll.findOne({filter}).subField
+db.coll.find({"field.subfield":"val"})
+
+Data Types
+Text
+Boolean
+Number => Integer,  NumberLong,   NumberDecimal
+ObjectId
+ISODate , TimeStamp
+Embedded Document
+Array
+
+One to One Relationship 
+Eg: A patient has one disease summary belongs to only themself 
+JUST EMBED DATA IN A FIELD
+
+One to Many
+Eg: One person can have multiple blogs
+Embedded => Use arrays
+References => Eg: when city has multiple citizens  [{field:ObjectId("4b654d67d3ddf99d")}]
+
+Many to Many
+Eg: Customer can have multi products order placed and that one product can have orders placed by multple customer
+Embedded => Use arrays
+References => Eg: one book has many authors and on author many books
+  [{field:ObjectId("4b654d67d3ddf99d")}]
+
+Populating Relationships
+db.coll.aggregate([{$lookup:{from:"foreign_coll_name",localField:"field_in_current",foreignField:"_id",as:"new_field_name" }}]);
+
+Defining Schema and validation
+Eg:
+db.createCollection('posts', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['title', 'text', 'creator', 'comments'],
+      properties: {
+        title: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        creator: {
+          bsonType: 'objectId',
+          description: 'must be an objectid and is required'
+        },
+        comments: {
+          bsonType: 'array',
+          description: 'must be an array and is required',
+          items: {
+            bsonType: 'object',
+            required: ['text', 'author'],
+            properties: {
+              text: {
+                bsonType: 'string',
+                description: 'must be a string and is required'
+              },
+              author: {
+                bsonType: 'objectId',
+                description: 'must be an objectid and is required'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});
+
+Modify Schema and validation
+db.runCommand({collMod:"collection_to_modify",validator:{all_validations and schemas}})
+
+Mongodb Shell Commands
+mongod --dbpath path => Store datbases in given path
+mongo --logpath path/log.log => Store log files 
+db.shutDownServer()
+mongod -f path/mongod.cfg => Select config file
+
+CREATE OPERATIONS
+db.coll.insertMany([{val},{va2}],{ordered:false}) => when query fails none is inserted
+Write Concern
+{writeConcern:{w:1,j:true}} => Takes time and ack w default is 1 j default is false
+Atomicity
+if error rolled back
+if saved saved as whole
+
+>> Export database 
+mongodump -d <database_name> -o <directory_backup>
+
+>> Import Data into database
+mongorestore --db <db name> <path> //Where the database json files are in the folder
+		OR
+mongorestore -d <database_name> <directory_backup>
+
+
+READ OPERATIONS
+Comarison Operator
+{field:{$ne:val}} => Not Equal
+$lt  $lte
+$gt  $gte
+$in:[val1,val2]
+$nin:[val1,val2]
+
+Logical Opeartors
+.find({$or:[{filter},{filter2}]})
+$nor
+$and 
+$not
+
+Element Operator
+{$exists:true , $ne: null}
+{$type:"string"} or use ["string","double"]
+$regex
+{$expr:{$gt:["$field1","$field2"]}} => Returns fields with field1 greater than field2 
+$expr -> $cond:{if:cond,then:cond,else:some}
+
+Array Query Selectors
+.find({arrField:{$size:3}}) => Returns whose field array size is eq to 3
+.find({arrField:{$all:["val","val2"]}}) => Returns who contains both val1 and val2
+.find({arrField:{$elemMatch:{filter}}}) => Matches element
+
+.sort({field:1,field2:-1}) => 1 ascending, -1 descending
+.skip(10) => Skip 10 docs
+.limit(10) => Limit to 10 docs
+$slice[1:3]
+
+Update Operations
+$set
+$inc:1 or $inc:{field:1} => Increments by the number specified
+$min :{field:num} => Updates id num is less than field
+$max
+$mul:{field:num} => Updates field by multiplying num 
+$unset:{field:""} => Deletes the field
+$rename:{field:"new_name"} => Rename field 
+$upsert:true => use as 3rd arg | if doc not found creates new
+.update(filter, {" ",{$set:{"field.$.sub_field":"new_val"}}}) => update certain field of an array and only updates first match in array
+field.$[].subField => Upadates all fields
+.updateMany({"field.subField":{filter}},{$set:{field.$[el].subField}},{arrayFilters:[{"el.subField":{filter}}]})  => Update all the arrays based on array filter
+{$push:{field:value}} => Add one value to field
+{$push:{field:{$each:[{val1},{val2}]}}}
+$pull:{filter} => Delete based on filter
+$pop:{field:1} => Deletes last el
+$addToSet => Only inserts new values  
+
+AGGREGATION
+db.persons.aggregate([{$match:{filter}}]) => match = find
+,{$group:{_id:{someKey : "$fieldToBeGroupedBy"},someKey2:{$sum:1}}}
+,{$sort:{somKey:1}}
+{$concat}

@@ -43,21 +43,9 @@
           </div>
         </div>
         <div>
-          <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Sign up
-            as</label>
-          <select id="countries"
-            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-            <option selected="">Choose one</option>
-            <option value="">User</option>
-            <option value="">Admin</option>
-            <option value="">Vendor</option>
-          </select>
-        </div>
-        <div>
-          <label for="Upload image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Upload image</label>
-          <input type="file" name="file" ngModel required
-            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-            placeholder="Upload a snap">
+          <label for="upload-image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Upload image</label>
+          <input type="file" name="upload_file" ngModel required
+          class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Upload an imaage">
         </div>
         <div class="flex items-center">
           <input name="terms-condition" type="checkbox" (click)="openDialog()"

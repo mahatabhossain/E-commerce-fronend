@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +30,13 @@ import { AccountcontrolComponent } from './components/admin/accountcontrol/accou
 import { ProductcontrolComponent } from './components/admin/productcontrol/productcontrol.component';
 import { AddproductComponent } from './components/vendor/addproduct/addproduct.component';
 import { ChatAppComponent } from './components/chat-app/chat-app.component';
+import { ProductComponent } from './components/product/product.component';
+import { SigninComponent } from './components/admin/signin/signin.component';
+import { SignupComponent } from './components/admin/signup/signup.component';
+import { ThreeComponent } from './components/three/three.component';
+import { VendorsigninComponent } from './components/vendor/vendorsignin/vendorsignin.component';
+import { VendorsignupComponent } from './components/vendor/vendorsignup/vendorsignup.component';
+import { VendordataComponent } from './components/vendor/vendordata/vendordata.component';
 
 
 @NgModule({
@@ -54,6 +59,13 @@ import { ChatAppComponent } from './components/chat-app/chat-app.component';
     ProductcontrolComponent,
     AddproductComponent,
     ChatAppComponent,
+    ProductComponent,
+    SigninComponent,
+    SignupComponent,
+    ThreeComponent,
+    VendorsigninComponent,
+    VendorsignupComponent,
+    VendordataComponent,
     // DialogComponent,
 
   ],

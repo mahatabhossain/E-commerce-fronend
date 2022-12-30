@@ -1,0 +1,7 @@
+.eye_icon{
+    position: relative;
+    top: -30px;
+    left: 410px;
+    z-index: 10;
+    cursor: pointer;
+}

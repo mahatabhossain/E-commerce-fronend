@@ -13,6 +13,6 @@ export class UpdateuserService {
   updateUser(id: string, data: any){
     // const body = JSON.stringify(data)
     //"put" modify entire data //"patch" modify some part of data
-   return this.http.patch(`${baseURL}update/user/${id}`,data)
+   return this.http.patch(`${baseURL}/update/user/${id}`,data)
   }
 }

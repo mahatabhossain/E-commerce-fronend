@@ -12,7 +12,7 @@ export class SigninService {
   userSignIn(userData: any){
     const headers = new HttpHeaders({'content-type': `application/json`});
     const body = JSON.stringify(userData);
-    return this.http.post(`${baseURL}signin/user`, body, {headers: headers});
+    return this.http.post(`${baseURL}/signin/user`, body, {headers: headers});
   }
 
   isLoggedIn():boolean{

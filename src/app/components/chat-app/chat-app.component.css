@@ -28,7 +28,7 @@ li{
     height: 20rem;
     width: 20rem;
     background-color: rgb(221, 212, 212);
-    border: 3px dotted blue;
+    border: 2px solid rgb(64, 64, 77);
     margin-bottom: 5px;
     flex-direction: column;
     overflow:auto;

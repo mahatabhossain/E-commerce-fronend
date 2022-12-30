@@ -13,6 +13,6 @@ export class DeleteService {
     const headers = new HttpHeaders({'content-type': 'application/json'})
     .set('Access-Control-Allow-Origin', "*")
     .set('Authorization',"Bearer " + token)
-    return this.http.delete(`${baseURL}delete/user/${id}`, {headers})
+    return this.http.delete(`${baseURL}/delete/user/${id}`, {headers})
   }
 }
