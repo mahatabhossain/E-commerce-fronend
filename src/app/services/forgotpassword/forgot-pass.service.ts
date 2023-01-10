@@ -15,7 +15,17 @@ export class ForgotPassService {
     return this.http.post(`${baseURL}/check/email`,body, {headers: header});
   };
 
-  // forgotPassword(id: string){
+  sendOTP(email:any){
+    return this.http.post(`${baseURL}/forgot/password`,email);
+  };
+
+
+  verifyOTP(otp:any){
+    console.log("from service",typeof otp)
+    return this.http.post(`${baseURL}/verify/otp`,{userOTP:otp});
+  };
+
+  // updatePassword(id: string){
   //   return this.http.patch(`${baseURL}forgot/password/${id}`);
   // }
 }

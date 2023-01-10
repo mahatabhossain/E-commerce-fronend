@@ -14,4 +14,12 @@ export class SigninService {
     vendorSignIn(signInData:any){
      return this.http.post(`${baseURL}/vendor/signin`,signInData);
     }
+
+    isVendorSignIn(){
+      let email = localStorage.getItem('vendorEmail');
+      let vendor = localStorage.getItem('role');
+
+      if(!(email && vendor)) return false;
+      else return true;
+    }
 }

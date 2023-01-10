@@ -37,6 +37,7 @@ import { ThreeComponent } from './components/three/three.component';
 import { VendorsigninComponent } from './components/vendor/vendorsignin/vendorsignin.component';
 import { VendorsignupComponent } from './components/vendor/vendorsignup/vendorsignup.component';
 import { VendordataComponent } from './components/vendor/vendordata/vendordata.component';
+import { UpdatevendorComponent } from './components/vendor/updatevendor/updatevendor.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { VendordataComponent } from './components/vendor/vendordata/vendordata.c
     VendorsigninComponent,
     VendorsignupComponent,
     VendordataComponent,
+    UpdatevendorComponent,
     // DialogComponent,
 
   ],

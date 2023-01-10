@@ -26,11 +26,16 @@ export class VendorsigninComponent implements OnInit {
   vendorSignin(formData:any){
     this.logginText = true;
     this.vendorSignInService.vendorSignIn(formData).subscribe((res:any) => {
+      console.log(res);
+      
       if(res){        
         this.logginText = false;
-        this.snackBar.open(res.message, 'Close', {
+        this.snackBar.open(res.status, 'Close', {
           duration: 3000,
         });
+        localStorage.setItem('vendorEmail', res.data.email)
+        localStorage.setItem('token', res.token)
+        localStorage.setItem('role', res.data.role)
         this.router.navigate(['/vendor/dashboard'])
       }
     })

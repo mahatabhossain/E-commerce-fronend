@@ -1,33 +1,55 @@
-
 <div class="flex min-h-full items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Enter you email</h2>
-      </div>
-      <form class="mt-8 space-y-6" #signInForm = "ngForm" (ngSubmit)="updatePass ? fotgotPassword(signInForm.value) : emailCheck(signInForm.value)">
-        <div class="-space-y-px rounded-md shadow-sm">
-          <div>
-            <label *ngIf="checkEmail" for="email-address" class="sr-only">Email address</label>
-            <input type="email" name="email" ngModel required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Email address">
-          </div>
-          <div *ngIf="newPassword">
-            <label for="email-address" class="sr-only">Enter new password</label>
-            <input type="password" name="password" ngModel required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Enter new password">
-          </div>
-          <div *ngIf="newPassword">
-            <label for="email-address" class="sr-only">Confirm new password</label>
-            <input type="password" name="password" ngModel required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Confirm new password">
-          </div>
-          </div>
-        <div>
-          <button *ngIf="buttonControl" type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-             Check Email
-          </button>
-          <button *ngIf="newPassword" type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            Reset password
-         </button>
-        </div>
-      </form>
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Enter your details</h2>
     </div>
+    <form class="mt-8 space-y-6" #signInForm="ngForm"
+
+      (ngSubmit)="checkEmailButton ?  emailCheck(signInForm.value) : submitOTP(signInForm.value)">
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div >
+          <label for="email" class="sr-only">Email address</label>
+          <input type="email" name="email" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Email address">
+        </div>
+        <div *ngIf="otp" >
+          <label for="otp" class="sr-only">OTP</label>
+          <input type="text" name="otp" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Enter OTP">
+        </div>
+        <div *ngIf="newPassword">
+          <label for="email" class="sr-only">Enter new password</label>
+          <input type="password" name="new-password" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Enter new password">
+        </div>
+        <div *ngIf="newPassword">
+          <label for="email" class="sr-only">Confirm new password</label>
+          <input type="password" name="confirm-password" ngModel required
+            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            placeholder="Confirm new password">
+        </div>
+      </div>
+      <div>
+        <button *ngIf="checkEmailButton" type="submit"
+          class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          {{checkEmailText ? 'Checking email...' : 'Chekc email'}}
+          <mat-progress-spinner *ngIf="checkEmailText" mode="indeterminate" color="warn" diameter="20" strokeWidth="40">
+          </mat-progress-spinner>
+        </button>
+        <button *ngIf="otpButton" type="submit"
+          class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          {{otpButtonText ? 'Verifying OTP...' : 'Submit OTP'}}
+          <mat-progress-spinner *ngIf="otpButtonText" mode="indeterminate" color="warn" diameter="20" strokeWidth="40">
+          </mat-progress-spinner>
+        </button>
+        <button *ngIf="updatePassButton" type="button" (click) = "updatePassword(signInForm.value)"
+          class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          Reset password
+        </button>
+      </div>
+    </form>
   </div>
-  
+</div>

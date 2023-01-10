@@ -21,6 +21,7 @@ import { VendorsigninComponent } from './components/vendor/vendorsignin/vendorsi
 import { VendorsignupComponent } from './components/vendor/vendorsignup/vendorsignup.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendordataComponent } from './components/vendor/vendordata/vendordata.component';
+import { UpdatevendorComponent } from './components/vendor/updatevendor/updatevendor.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path: 'vendor/data',
     component: VendordataComponent,
+  },
+  {
+    path: 'vendor/update',
+    component: UpdatevendorComponent,
   },
 
   //*************// USER ROUTES //******************/

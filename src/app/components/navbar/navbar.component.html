@@ -2,13 +2,13 @@
 
   <!-- USER NAVIGATION -->
   <mat-toolbar-row *ngIf="role == 'user'">
-    <span><a class="home" href="/">HOME</a></span>
+    <span><a class="home" href="/user/landing">HOME</a></span>
     <a mat-button routerLink="products">Product</a>
     <span class="spacer"></span>
     <a *ngIf="!signIn.isLoggedIn()" mat-button routerLink="/register/user">Register</a>
     <a *ngIf="!signIn.isLoggedIn()" mat-button routerLink="/user/login">Login</a>
     <!-- <a *ngIf="signIn.isLoggedIn()" mat-button (click)="logOut()"><mat-icon>account_circle</mat-icon></a> -->
-    <a *ngIf="signIn.isLoggedIn()" mat-button>Become seller</a>
+    <a *ngIf="signIn.isLoggedIn()" mat-button routerLink="/vendor/signup">Become seller</a>
     <a *ngIf="signIn.isLoggedIn()" mat-button (click)="logoutUser()">Logout</a>
   </mat-toolbar-row>
 
@@ -17,6 +17,9 @@
     <span><a class="home" href="/admin/dashboard">HOME</a></span>
     <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button routerLink="/retrieve/user">Users</a>
     <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button routerLink="vendor/data">Vendors</a>
+    <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button routerLink="vendor/data">Add User</a>
+    <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button routerLink="vendor/data">Add Vendor</a>
+
     <span class="spacer"></span>
     <a *ngIf="!adminSignIn.isAdminLoggedIn()" mat-button routerLink="admin/signup">Register</a>
     <a *ngIf="!adminSignIn.isAdminLoggedIn()" mat-button routerLink="admin/login">Login</a>
@@ -26,11 +29,12 @@
   <!-- VENDOR NAVIGARION -->
   <mat-toolbar-row *ngIf="role == 'vendor'">
     <span><a class="home" href="/vendor/dashboard">HOME</a></span>
-    <!-- <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button routerLink="/retrieve/user">Users</a> -->
+    <a *ngIf="vendorSignIn.isVendorSignIn()" routerLink="">Add Product</a>
+    <a *ngIf="vendorSignIn.isVendorSignIn()" mat-button routerLink="">View Product</a>
     <span class="spacer"></span>
-    <a mat-button routerLink="vendor/signup">Register</a>
-    <a mat-button routerLink="vendor/signin">Login</a>
-    <!-- <a *ngIf="adminSignIn.isAdminLoggedIn()" mat-button (click)="logoutAdmin()">Logout</a> -->
+    <a *ngIf="!vendorSignIn.isVendorSignIn()" mat-button routerLink="vendor/signup">Register</a>
+    <a *ngIf="!vendorSignIn.isVendorSignIn()" mat-button routerLink="vendor/signin">Login</a>
+    <a *ngIf="vendorSignIn.isVendorSignIn()" mat-button (click)="logoutVendor()">Logout</a>
   </mat-toolbar-row>
 
 </mat-toolbar>

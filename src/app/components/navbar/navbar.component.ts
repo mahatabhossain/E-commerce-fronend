@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SigninService } from '../../services/signin/signin.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { SigninService } from '../../services/signin/signin.service'
 import { SigninService as adminSignInService } from '../../services/admin/signin/signin.service'
-import { Location } from '@angular/common';
+import { SigninService as vendorSignInService } from '../../services/vendor/signin/signin.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit {
     private router: Router, 
     private snackBar: MatSnackBar,
     public adminSignIn: adminSignInService,
+    public vendorSignIn: vendorSignInService,
     private location: Location,
     ) { 
       // if(this.location.path().search('admin')) {this.role = 'admin'};
@@ -66,5 +68,13 @@ export class NavbarComponent implements OnInit {
   };
 
   //*****************// LOGOUT VENDOR //*********************** */
+  logoutVendor(){
+    localStorage.removeItem('vendorEmail')
+    localStorage.removeItem('vendor')
+    this.snackBar.open('You are logged out', 'Close', {
+      duration: 3000,
+    });
+    this.router.navigate(['vendor/signin'])
+  }
 
 }

@@ -14,6 +14,6 @@ export class SignupService {
     const headers = new HttpHeaders({'content-type': 'multipart/form-data'});
     // const body = JSON.stringify(userData);
 
-    return this.http.post(`${baseURL}/create/user`, userData,{'headers': headers});
+    return this.http.post(`${baseURL}/create/user`, userData); //{'headers': headers}
   }
 }
